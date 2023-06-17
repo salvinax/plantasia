@@ -10,13 +10,6 @@ function Navbar({ toogleCart, itemNum }) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [hideNavbar, setHideNavbar] = useState(false);
 
-  const handleShopClick = () => {
-    if (location.pathname === "/shop") {
-      navigateTo("/shop");
-      // window.location.reload();
-    }
-  };
-
   useEffect(() => {
     if (location.pathname === "/checkout") {
       setHideNavbar(true);
@@ -42,7 +35,7 @@ function Navbar({ toogleCart, itemNum }) {
         <Link to="/" className="navbar-logo">
           PLANTASIA
         </Link>
-        <Link to="/shop" onClick={handleShopClick} className="navbar-middle">
+        <Link to="/shop" className="navbar-middle">
           shop
         </Link>
 

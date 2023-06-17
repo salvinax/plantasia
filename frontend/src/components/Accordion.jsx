@@ -30,8 +30,8 @@ function Accordion({ order, products }) {
                   <div className="single-order-item-title">
                     <div className="product-name-order">
                       {item.variantName == "one size"
-                        ? item.productName
-                        : item.productName +
+                        ? item.productName.toLocaleUpperCase()
+                        : item.productName.toLocaleUpperCase() +
                           " - " +
                           item.variantName.toLocaleUpperCase()}
                     </div>

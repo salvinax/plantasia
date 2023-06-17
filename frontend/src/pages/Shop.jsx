@@ -8,13 +8,10 @@ function Shop({ addToCart }) {
   //get entire database of product to display
   const location = useLocation();
   const navigateTo = useNavigate();
-  var counter = 0;
   const [data, setData] = useState([]);
-  const isFirstRenderRef = useRef(true);
   const [title, setTitle] = useState("All");
   const [sortID, setSortID] = useState("DEFAULT");
-  const [URL, setURL] = useState("");
-  const [dataFound, setDataFound] = useState(false);
+
   const [drop, setDrop] = useState(false);
   const dropRef = useRef(null);
   const dropBorder = useRef(null);
@@ -23,39 +20,10 @@ function Shop({ addToCart }) {
   const filterNames = ["All", "Plants", "Accessories", "Bestsellers", "Others"];
   const sortNames = ["default", "priceASC", "priceDESC"];
 
-  // const firstEl = useRef();
-
-  // useEffect(() => {
-  //   const scrollPosition = sessionStorage.getItem("scrollPosition");
-  //   if (scrollPosition) {
-  //     window.scrollTo({
-  //       top: scrollPosition,
-  //       left: 0,
-  //       behavior: "instant",
-  //     });
-  //     sessionStorage.removeItem("scrollPosition");
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (firstEl.current) {
-  //     firstEl.current.classList.add("active-box");
-  //   }
-  // }, []);
-
-  //skip first two renders
-  // useEffect(() => {
-  //   if (isFirstRenderRef.current) {
-  //     counter = counter + 1;
-  //     if (counter == 2) {
-  //       isFirstRenderRef.current = false;
-  //     }
-  //     return;
-  //   } else {
-  //     const filterUrl = "/shop?filter=" + title + "&sort=" + sortID;
-  //     navigateTo(filterUrl);
-  //   }
-  // }, [title, sortID]);
+  useEffect(() => {
+    console.log(title);
+    console.log(sortID);
+  });
 
   useEffect(() => {
     if (dropBorder.current && drop) {
@@ -88,20 +56,21 @@ function Shop({ addToCart }) {
         return res.json().then((json) => Promise.reject(json));
       })
       .then((data) => {
-        if (data.length == 0) {
-          setDataFound(false);
-        } else {
-          setDataFound(true);
-          console.log(data);
+        if (data.length > 0) {
           setData(data);
           var search = new URLSearchParams(window.location.search);
+
           if (filterNames.includes(search.get("filter"))) {
             setTitle(search.get("filter"));
+          } else {
+            setTitle("All");
           }
 
-          // if (sortNames.includes(search.get("sort"))) {
-          //   setSortID(search.get("sort"));
-          // }
+          if (sortNames.includes(search.get("sort"))) {
+            setSortID(search.get("sort"));
+          } else {
+            setSortID("default");
+          }
         }
       })
       .catch((err) => console.log(err));
@@ -126,7 +95,7 @@ function Shop({ addToCart }) {
     }
   }
 
-  function home() {
+  function defaultFilter() {
     var search = new URLSearchParams(window.location.search);
     search.delete("filter");
     setTitle("All");
@@ -143,17 +112,13 @@ function Shop({ addToCart }) {
     var target = window.location.search;
     //if url has nothing
     if (!target) {
-      // var search = new URLSearchParams(window.location.search);
-      // search.set("filter", e.target.textContent);
       navigateTo("?sort=" + name);
-      // setURL("?filter=" + e.target.textContent);
     }
     //if url has a filter tag already
     if (target) {
       var search = new URLSearchParams(window.location.search);
       if (search.get("sort")) {
         search.set("sort", name);
-        console.log(search.toString());
         navigateTo("?" + search.toString());
       } else {
         navigateTo("?" + search.toString() + "&sort=" + name);
@@ -162,9 +127,9 @@ function Shop({ addToCart }) {
   }
 
   function handleSort(name) {
-    setSortID(name.toLocaleUpperCase());
     setDrop(false);
     if (name == "default") {
+      setSortID(name);
       defaultSort();
     } else {
       sortProducts(name);
@@ -173,11 +138,13 @@ function Shop({ addToCart }) {
 
   return (
     <>
-      <div className="nav-area"></div>
       <div className="filter-area">
         <div className="set-bottom">
           <ul>
-            <li className={title == "All" ? "active-box" : ""} onClick={home}>
+            <li
+              className={title == "All" ? "active-box" : ""}
+              onClick={defaultFilter}
+            >
               All
             </li>
             <li
@@ -207,7 +174,7 @@ function Shop({ addToCart }) {
           </ul>
 
           <div className="sort-ctn-area">
-            <p>SORT</p>
+            <p className="dropdown-title">SORT</p>
 
             <div ref={dropRef} className="drop-down-class">
               <div
@@ -216,7 +183,7 @@ function Shop({ addToCart }) {
                 className="drop-down-selected"
               >
                 <div className="drop-down-selected-p">
-                  <p>{sortID}</p>
+                  <p>{sortID.toLocaleUpperCase()}</p>
                 </div>
               </div>
               <div className="align">
@@ -243,12 +210,15 @@ function Shop({ addToCart }) {
         </div>
       </div>
       <div className="product-area-shop">
-        {data &&
+        {data.length > 0 ? (
           data.map((item) => {
             return (
               <Product key={item.productID} addToCart={addToCart} item={item} />
             );
-          })}
+          })
+        ) : (
+          <div className="no-products">NO PRODUCTS WERE FOUND.</div>
+        )}
       </div>
     </>
   );

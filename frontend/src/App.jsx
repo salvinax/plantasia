@@ -16,11 +16,16 @@ import { Elements } from "@stripe/react-stripe-js";
 import Register from "./pages/Register";
 
 function App() {
+  //for stripe
   const [stripePromise, setStripePromise] = useState(() =>
     loadStripe(import.meta.env.VITE_STRIPE_PUB)
   );
+
+  //for sliding cart
   const [cartVisible, setCartVisible] = useState(false);
   const [itemNum, setItemNum] = useState(0);
+
+  //retrieve cart from localStorage
   const [cart, setCart] = useState(() => {
     const localValue = localStorage.getItem("CARTITEMS");
     if (localValue == null) return [];
@@ -31,9 +36,10 @@ function App() {
     localStorage.setItem("CARTITEMS", JSON.stringify(cart));
   }, [cart]);
 
+  //check if item is alreay in cart if yes, then only increase quantity
   function addToCart(item, qtn) {
     let flag = 0;
-    //check if item is alreay in cart if yes, then only increase quantity
+
     const updateItems = cart.map((el) => {
       if (el.productID === item.productID && el.variant === item.variant) {
         flag = 1;
@@ -54,6 +60,14 @@ function App() {
     toogleCart();
   }
 
+  //delete cart once order is processed - checkout
+  function deleteCart() {
+    setCart(() => {
+      return [];
+    });
+  }
+
+  //remove cart item
   function removeItem(item) {
     setCart((currentCart) => {
       return currentCart.filter((current) => {
@@ -68,6 +82,7 @@ function App() {
     });
   }
 
+  //changes quantity of cart item - if 0 delete item from cart
   function changeQuantity(item, number) {
     const newQ = item.quantity + number;
     if (newQ == 0) {
@@ -104,6 +119,14 @@ function App() {
     }
   }
 
+  //close cart indefinetly - used for checkout page
+  function closeCart() {
+    setCartVisible(false);
+    document.querySelector(".cart-ctn").classList.remove("act");
+    document.body.classList.remove("stop-scroll");
+  }
+
+  //counts cart item number
   useEffect(() => {
     setItemNum(() => {
       let itemquantity = 0;
@@ -120,7 +143,6 @@ function App() {
         <BrowserRouter>
           <Scroll />
           <Navbar toogleCart={toogleCart} itemNum={itemNum} />
-
           <Cart
             cart={cart}
             cartVisible={cartVisible}
@@ -145,12 +167,17 @@ function App() {
             <Route path="/login" exact element={<Login />} />
             <Route path="/register" exact element={<Register />} />
             <Route path="/account" exact element={<Account />} />
+
             <Route
               path="/checkout"
               exact
               element={
                 <Elements stripe={stripePromise}>
-                  <Checkout />
+                  <Checkout
+                    closeCart={closeCart}
+                    deleteCart={deleteCart}
+                    cart={cart}
+                  />
                 </Elements>
               }
             />

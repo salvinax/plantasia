@@ -15,6 +15,7 @@ function Cart({
   const [totalPrice, setTotalPrice] = useState(0);
   const navigateTo = useNavigate();
 
+  // calculate the cart' subtotal
   useEffect(() => {
     setTotalPrice(() => {
       let subtotalPrice = 0;
@@ -24,6 +25,7 @@ function Cart({
       return subtotalPrice;
     });
   }, [cart]);
+
   return (
     <>
       <div
@@ -37,67 +39,74 @@ function Cart({
             <div onClick={toogleCart} className="cart-title-x">
               X
             </div>
-            {/* <img onClick={toogleCart} src="/x-thin.png" alt="" /> */}
           </div>
 
           <div className="cart-contents">
-            {/* <div className="empty-cart">
-              Your Cart is Empty. Check out our products!
-            </div> */}
-            {cart.map((item) => (
-              <div
-                key={item.productID + "-" + item.variant}
-                className="cart-item"
-              >
-                <div className="cart-item-img">
-                  <img src="/plant1.jpg" alt="" />
-                </div>
-
-                <div className="cart-item-txt">
-                  <p className="item-title">{item.name.toLocaleUpperCase()}</p>
-                  <p className="item-price">{item.price}$</p>
-                  <p className="variant-name">
-                    {item.variant == "one size" ? null : item.variant}
-                  </p>
-                  <div className="item-quantity">
-                    <div
-                      className="cart-arrows"
-                      id="left-arrow"
-                      onClick={() => changeQuantity(item, -1)}
-                    >
-                      -
-                    </div>
-                    <p>{item.quantity}</p>
-                    <div
-                      className="cart-arrows"
-                      id="right-arrow"
-                      onClick={() => changeQuantity(item, 1)}
-                    >
-                      +
-                    </div>
-                  </div>
-                  <div className="remove-btn" onClick={() => removeItem(item)}>
-                    REMOVE
-                  </div>
-                </div>
+            {cart.length == 0 && (
+              <div className="empty-cart">
+                Your Cart is Empty. Check out our products!
               </div>
-            ))}
-          </div>
-          <div className="cart-checkout">
-            <div className="cart-subtotal">
-              <div>SUBTOTAL</div>
-              <div>{totalPrice}$</div>
-            </div>
+            )}
+            {cart.length > 0 &&
+              cart.map((item) => (
+                <div
+                  key={item.productID + "-" + item.variant}
+                  className="cart-item"
+                >
+                  <div className="cart-item-img">
+                    <img src="/plant1.jpg" alt="" />
+                  </div>
 
-            {cart.length > 0 && (
+                  <div className="cart-item-txt">
+                    <p className="item-title">
+                      {item.name.toLocaleUpperCase()}
+                    </p>
+                    <p className="item-price">{item.price}$</p>
+                    <p className="variant-name">
+                      {item.variant == "one size" ? null : item.variant}
+                    </p>
+                    <div className="item-quantity">
+                      <div
+                        className="cart-arrows"
+                        id="left-arrow"
+                        onClick={() => changeQuantity(item, -1)}
+                      >
+                        -
+                      </div>
+                      <p>{item.quantity}</p>
+                      <div
+                        className="cart-arrows"
+                        id="right-arrow"
+                        onClick={() => changeQuantity(item, 1)}
+                      >
+                        +
+                      </div>
+                    </div>
+                    <div
+                      className="remove-btn"
+                      onClick={() => removeItem(item)}
+                    >
+                      REMOVE
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+          {cart.length > 0 && (
+            <div className="cart-checkout">
+              <div className="cart-subtotal">
+                <div>SUBTOTAL</div>
+                <div>{totalPrice}$</div>
+              </div>
+
               <button
                 className="checkout-btn"
                 onClick={() => navigateTo("/checkout")}
               >
                 checkout
               </button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </>

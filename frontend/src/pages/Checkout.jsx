@@ -5,13 +5,8 @@ import "./checkout.css";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import serverData from "../server.json";
 
-function Checkout() {
-  const [cart, setCart] = useState(() => {
-    const localValue = localStorage.getItem("CARTITEMS");
-    if (localValue == null) return [];
-    return JSON.parse(localValue);
-  });
-
+function Checkout({ closeCart, toogleCart, deleteCart, cart }) {
+  const [saveOrder, setSaveOrder] = useState(cart);
   const [prices, setPrices] = useState("");
   const [taxes, setTaxes] = useState("");
   const [amount, setAmount] = useState("");
@@ -26,6 +21,8 @@ function Checkout() {
   const [postal, setPostal] = useState("");
   const [province, setProvince] = useState("");
 
+  const [orderID, setOrderID] = useState("");
+
   const [submitError, setSubmitError] = useState("");
   const [paymentAccepted, setPaymentAccepted] = useState(false);
 
@@ -33,6 +30,10 @@ function Checkout() {
   const stripe = useStripe();
   const navigateTo = useNavigate();
   const rooturl = serverData.link;
+
+  useEffect(() => {
+    closeCart();
+  }, []);
 
   const cardElementOptions = {
     style: {
@@ -54,7 +55,7 @@ function Checkout() {
 
   useEffect(() => {
     let subtotal = 0;
-    cart.map((item) => {
+    saveOrder.map((item) => {
       subtotal += item.quantity * item.price;
     });
     setPrices(subtotal.toFixed(2));
@@ -128,7 +129,6 @@ function Checkout() {
       country.length > 0 &&
       province.length > 0 &&
       postal.length > 0;
-
     if (!filledFields) {
       setSubmitError("Fields Missing");
     } else if (!regexEmail.test(email)) {
@@ -148,12 +148,12 @@ function Checkout() {
       username: email,
       firstName: firstName,
       lastName: lastName,
-      numItems: cart.length,
+      numItems: saveOrder.length,
       street: address,
       city: city,
       province: province,
       pc: postal,
-      items: cart,
+      items: saveOrder,
     };
     //take order summary info and info in fields and add them to database
     //add user if they do not have account
@@ -172,13 +172,23 @@ function Checkout() {
       })
       .then(async (data) => {
         setPaymentAccepted(true);
+        scrollTop();
+
         //remove everything in cart
+        setOrderID(data);
         console.log(data);
-        localStorage.removeItem("CARTITEMS");
+        deleteCart();
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  function scrollTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }
 
   return (
@@ -202,7 +212,7 @@ function Checkout() {
                   THANKS FOR SHOPPING WITH US! YOU SHOULD RECEIVE A CONFIRMATION
                   EMAIL SHORTLY!
                 </div>
-                <div className="success-block-msg3">ORDER ID: #551</div>
+                <div className="success-block-msg3">ORDER ID: #{orderID}</div>
               </div>
             )}
 
@@ -276,7 +286,7 @@ function Checkout() {
             <div className="summary-middle-container">
               <div className="summary-header">ORDER SUMMARY</div>
               <div className="summary-items">
-                {cart.map((item) => {
+                {saveOrder.map((item) => {
                   return (
                     <div
                       key={item.name + "-" + item.variant}

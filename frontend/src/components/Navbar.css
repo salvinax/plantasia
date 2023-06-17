@@ -14,6 +14,7 @@
     font-size: 1.8rem;
     flex: 1;
     text-indent: 1rem;
+    border: none;
 }
 
 
@@ -107,7 +108,7 @@
     background-color: rgba(0, 0, 0, .3);
     opacity: 0.6;
     z-index: 600;
-    transition: z-index 0.4s step-start, opacity 0.4s linear;
+    transition: z-index 0.5s step-start, opacity 0.4s linear;
 }
 
 .overlay-cart.unactive {
@@ -115,7 +116,7 @@
     z-index: -1;
     display: none;
     visibility: hidden;
-    transition: z-index 0.4s step-end, opacity 0.4s linear;
+    transition: z-index 0.5s step-end, opacity 0.4s linear;
 }
 
 .cart-ctn-level {
@@ -287,14 +288,10 @@
 
 
 .empty-cart {
-    position: absolute;
-
+    margin-top: 30px;
     font-size: 20px;
-    width: 80%;
+    width: 60%;
     height: 20%;
     text-align: center;
     overflow-wrap: break-word;
-    top: 2%;
-    left: 50%;
-    transform: translate(-50%, 0);
 }

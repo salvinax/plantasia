@@ -11,10 +11,12 @@ function Productpage({ addToCart }) {
   const [item, setItem] = useState([]);
   const [variantInfo, setVariantInfo] = useState([]);
   const [drop, setDrop] = useState(false);
+
   const dropRef = useRef(null);
   const dropBorder = useRef(null);
   const rooturl = serverData.link;
 
+  //for dropdown - deletes line under box onClick
   useEffect(() => {
     if (dropBorder.current) {
       if (drop) {
@@ -25,6 +27,7 @@ function Productpage({ addToCart }) {
     }
   }, [drop]);
 
+  //detects if user clicks away from dropdown
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropRef.current && !dropRef.current.contains(event.target)) {
@@ -40,6 +43,7 @@ function Productpage({ addToCart }) {
     };
   }, [dropRef]);
 
+  //retrieve product and variant data
   useEffect(() => {
     fetch(rooturl + "/api/product/" + productId)
       .then((res) => {

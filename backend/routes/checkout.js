@@ -60,6 +60,8 @@ router.post('/process-order', async (req, res) => {
         for (const item of products) {
             await db.query('INSERT INTO ordercontains values(?,?,?,?,?)', [orderID, item.id, item.variant, item.price, item.quantity])
         }
+
+
         //const hi = products.map(async (item) => { doesnt' work because it does not await, collects return values 
 
         //send email to customer for order confirmation
@@ -84,7 +86,7 @@ router.post('/process-order', async (req, res) => {
             html: `<p>${msg}</p>`, // html body
         });
 
-        res.status(200).json({ message: 'Order Added to DB.' })
+        res.status(200).json(orderID)
 
     } catch (err) {
         res.status(500).json(err)
