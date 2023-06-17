@@ -1,0 +1,80 @@
+.bestseller-container {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    text-align: center;
+}
+
+
+.btn-shop-best-container {
+    height: 10vh;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.btn-shop-best {
+    height: 40px;
+    width: 170px;
+    border: 2px solid black;
+    background-color: transparent;
+    font-family: 'Inconsolata', monospace;
+    font-size: large;
+}
+
+.btn-shop-best:hover {
+    color: white;
+    background-color: black;
+}
+
+.bestseller-container h1 {
+    font-family: 'Inconsolata', monospace;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.scrolling-container {
+    height: 40vh;
+    width: 100%;
+    margin-top: 100px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    background-color: transparent;
+
+}
+
+.scroll-items-group {
+    display: flex;
+    animation: slidingout 20s linear infinite;
+    background-color: transparent;
+}
+
+.item-scroll {
+    height: 35vh;
+    width: 200px;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: palegoldenrod;
+}
+
+@keyframes slidingout {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+
+.item-scroll:hover {
+    transform: scale(1.1);
+}
+
+.scroll-items-group:hover {
+    animation-play-state: paused;
+}

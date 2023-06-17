@@ -1,0 +1,151 @@
+.main-ctn-acc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.space-btw {
+    height: 6rem;
+}
+
+.order-data-ctn {
+    /* height: 100vh; erease that  */
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    min-height: 20vh;
+    position: relative;
+    padding-bottom: 2rem;
+
+}
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.user-header p {
+    font-size: 1.5rem;
+    margin-right: 5px;
+
+}
+
+
+.order-header {
+    background-color: #516157;
+    display: flex;
+    height: 2rem;
+    justify-content: space-between;
+    color: white;
+    font-size: 1.2rem;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+/* .order-header:first-child {
+    margin-top: 0;
+} */
+
+.order-details {
+    text-indent: 5px;
+}
+
+.order-details-right {
+    display: flex;
+    column-gap: 30px;
+}
+
+.order-details-right p:last-child {
+    margin-right: 10px;
+}
+
+
+.order-items-ctn {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    transition: all .5s;
+
+}
+
+.single-order-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.single-order-item img {
+    height: 7rem;
+    width: 6rem;
+    object-fit: cover;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+.single-order-item-text {
+    flex-basis: 85%;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+
+.single-order-item-title {
+    height: 6rem;
+    width: 100%;
+    position: relative;
+    font-size: 1.2rem;
+}
+
+.product-name-order {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.product-qtn-order {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 0.8rem;
+}
+
+.product-price-order {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+}
+
+
+/* price section */
+
+
+.border-line {
+    border-top: 1px solid black;
+
+}
+
+
+.price-details {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.no-orders {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    text-align: center;
+}
+
+
+.var-font {
+    font-size: 10px;
+}

@@ -1,0 +1,172 @@
+.product-ctn-whole {
+    display: flex;
+}
+
+@media only screen and (max-width:700px) {
+    .product-ctn-whole {
+        flex-direction: column;
+    }
+}
+
+
+.product-img-half {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+
+}
+
+.product-info-half {
+    flex-basis: 50%;
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 100px;
+}
+
+.product-img-half-ctn {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+}
+
+.product-img-half-ctn img {
+    width: 100%;
+    height: 28rem;
+    object-fit: cover;
+}
+
+.product-quantity {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+    column-gap: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cart-arrows {
+    cursor: pointer;
+}
+
+.product-info-half-ctn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+
+.small-border-page {
+    border-bottom: 1px solid black;
+    width: 14%;
+    margin-top: 5px;
+}
+
+.product-name-page {
+    font-size: 30px;
+}
+
+.product-price-page {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.product-info-page {
+    width: 75%;
+    margin-bottom: 30px;
+}
+
+
+
+.cart-btn-product {
+    width: 60%;
+    height: 10%;
+    border-radius: 5px;
+    border: 0;
+    background-color: #C45231;
+    color: white;
+    font-size: 20px;
+    margin-top: 60px;
+}
+
+.cart-btn-product:hover {
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+}
+
+/* drop down menu  */
+.drop-down-class-new {
+    font-size: 13px;
+    width: 11rem;
+    text-align: start;
+    text-indent: 3px;
+    row-gap: 2px;
+    position: relative;
+    background-color: transparent;
+
+}
+
+.align-new {
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: #F8F7F5;
+
+}
+
+.drop-down-selected-new {
+    border: 1px solid black;
+    /* border: 1px solid black;
+    border-radius: 5px; */
+    text-align: start;
+    text-indent: 3px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+}
+
+
+.activations-new {
+    border-bottom: 1px solid transparent;
+}
+
+.drop-down-selected-p p {
+    margin: 2px 0px;
+
+}
+
+.border-mid-new {
+    border-bottom: 1px solid black;
+    width: 90%;
+    margin-left: 5px;
+
+}
+
+
+
+.drop-down-content-new {
+    margin-top: -2px;
+    border: 1px solid black;
+    border-top: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
+    overflow-y: scroll;
+}
+
+.drop-down-item-new p {
+    margin: 2px 0px;
+    font-size: 15px;
+
+}
+
+.drop-down-item-new {
+    cursor: pointer;
+}

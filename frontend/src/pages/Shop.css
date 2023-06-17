@@ -1,0 +1,171 @@
+.body {
+    font-family: 'Gilda Display', 'serif';
+}
+
+.filter-area {
+    height: 90px;
+    margin: 0 70px;
+    position: relative;
+}
+
+.nav-area {
+    height: 2.2rem;
+
+}
+
+.set-bottom {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    /* background-color: red; */
+}
+
+
+
+.filter-area ul li {
+    display: inline-block;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.active-box {
+    border-bottom: 1px solid black;
+}
+
+.sort-ctn-area {
+    display: flex;
+}
+
+.drop-down-class {
+    left: 20px;
+    font-size: 13px;
+    width: 6.5rem;
+    text-align: start;
+    text-indent: 3px;
+    row-gap: 2px;
+    position: relative;
+    background-color: transparent;
+}
+
+.align {
+    position: absolute;
+    z-index: 1;
+    background-color: #F8F7F5;
+}
+
+.drop-down-selected {
+    border: 1px solid black;
+    /* border: 1px solid black;
+    border-radius: 5px; */
+    text-align: start;
+    text-indent: 3px;
+    cursor: pointer;
+
+}
+
+.activations {
+    border-bottom: 1px solid transparent;
+}
+
+.drop-down-selected p {
+    margin: 2px 0px;
+
+}
+
+.border-mid {
+    border-bottom: 1px solid black;
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+.drop-down-content {
+    margin-top: -2px;
+    border: 1px solid black;
+    border-top: 0;
+    width: 6.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
+}
+
+.drop-down-item p {
+    margin: 2px 0px;
+    font-size: 13px;
+
+}
+
+.drop-down-item {
+    cursor: pointer;
+}
+
+
+
+/* product listing begins */
+
+.product-area-shop {
+    /* display: flex;
+    justify-content: space-between;
+    margin: 0 50px;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    padding-bottom: 50px; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex: auto;
+    grid-row-gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* .product-area-shop.ctn {
+    flex-basis: 80%;
+    background-color: orange;
+    height: 30vh;
+} */
+
+.product-area-shop-item {
+    /* flex-grow: 1; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.product-area-shop-item img {
+    height: 18rem;
+    width: 14rem;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+
+}
+
+.product-area-shop-item button {
+    background-color: #516157;
+    cursor: pointer;
+    /* border-radius: 20px; */
+
+    height: 2rem;
+    width: 30%;
+    border: none;
+    color: white;
+    font-size: 15px;
+
+}
+
+.product-area-shop-item-title {
+    font-size: 20px;
+}
+
+.product-area-shop-item-prices {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
