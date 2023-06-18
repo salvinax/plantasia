@@ -25,7 +25,7 @@ function Accordion({ order, products }) {
                 key={item.productID + "-" + order.orderID}
                 className="single-order-item"
               >
-                <img src="/plant1.jpg" alt="" />
+                <img src={"/products/" + item.imgLink} alt="" />
                 <div className="single-order-item-text">
                   <div className="single-order-item-title">
                     <div className="product-name-order">

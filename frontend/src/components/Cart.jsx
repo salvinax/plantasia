@@ -54,7 +54,7 @@ function Cart({
                   className="cart-item"
                 >
                   <div className="cart-item-img">
-                    <img src="/plant1.jpg" alt="" />
+                    <img src={"/products/" + item.img} alt="" />
                   </div>
 
                   <div className="cart-item-txt">

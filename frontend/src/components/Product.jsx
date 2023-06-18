@@ -41,7 +41,7 @@ function Product({ addToCart, item }) {
       <div className="product-area-shop-item">
         <img
           onClick={() => navigateTo("/shop/" + item.productID)}
-          src="./plant1.jpg"
+          src={"/products/" + item.imgLink}
           alt=""
         />
         <div className="product-area-shop-item-title">{item.productName}</div>

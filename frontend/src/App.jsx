@@ -153,7 +153,7 @@ function App() {
           />
 
           <Routes>
-            <Route path="/" exact element={<Home />} />
+            <Route path="/" exact element={<Home addToCart={addToCart} />} />
             <Route
               path="/shop"
               exact

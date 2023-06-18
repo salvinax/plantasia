@@ -5,7 +5,7 @@ import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import FadeIn from "../components/fadeIn";
 
-function Home() {
+function Home({ addToCart }) {
   const navigateTo = useNavigate();
 
   return (
@@ -24,6 +24,7 @@ function Home() {
           shop
         </button>
       </div>
+
       {/* about section  */}
       <div className="about-section">
         <div className="about-section-text">
@@ -42,51 +43,34 @@ function Home() {
         </div>
       </div>
 
-      {/* bestseller section */}
-      {/* <div className="bestseller-section">
-        <div className="bestseller-items-ctn">
-          <div className="bestseller-item">
-            <img src="/plant1.jpg" alt="" />
-          </div>
-          <div className="bestseller-item">
-            <img src="/plant1.jpg" alt="" />
-          </div>
-          <div className="bestseller-item">
-            <img src="/plant1.jpg" alt="" />
-          </div>
-          <div className="bestseller-item">
-            <img src="/plant1.jpg" alt="" />
-          </div>
-        </div>
-        <div className="under-bestseller">
-          <div
-            onClick={() => {
-              navigateTo("/shop?filter=Bestsellers");
-            }}
-            className="bestseller-subtitle"
-          >
-            shop bestsellers →
-          </div>
-        </div>
-      </div> */}
-
       <div className="shortcut-section-ctn">
         <div className="shortcut-items">
-          <div className="shortcut-item">
-            <img src="/pl.jpg" alt="" />
+          <div
+            onClick={() => navigateTo("/shop?filter=Plants")}
+            className="shortcut-item"
+          >
+            <img src="/plant.jpg" alt="" />
             <div className="shortcut-item-title">plants → </div>
           </div>
 
-          <div className="shortcut-item middle">
-            <img src="/balm2.png" alt="" />
+          <div
+            onClick={() => navigateTo("/shop?filter=Others")}
+            className="shortcut-item middle"
+          >
+            <img src="/balm.png" alt="" />
             <div className="shortcut-item-title">organic →</div>
           </div>
-          <div className="shortcut-item ">
-            <img src="/pl1.jpg" alt="" />
+          <div
+            onClick={() => navigateTo("/shop?filter=Accessories")}
+            className="shortcut-item "
+          >
+            <img src="/pots1.jpg" alt="" />
             <div className="shortcut-item-title">accessories →</div>
           </div>
         </div>
       </div>
+
+      {/* bestseller section */}
 
       <div className="best-section">
         <div className="best-half-one">
@@ -96,8 +80,10 @@ function Home() {
               <span className="breakword">TO YOURS</span>
             </div>
             <div className="best-text">
-              Here's a hosta plant, super easy to take care, low light. Beginner
-              Friendly! Starting at 25$.
+              This is a button fern. Water once every one to two weeks and place
+              it in indirect sunglight. It's suitable for beginners and pet
+              friendly!
+              <span className="breakword space">Starting from 25$.</span>
             </div>
 
             <div
@@ -111,12 +97,12 @@ function Home() {
           </div>
         </div>
         <div className="best-half-two">
-          <img src="/pl.jpg" alt="" />
+          <img src="/fern-plant.jpg" alt="" />
           <button className="best-half-two-btn">add to cart</button>
         </div>
       </div>
 
-      {/* infomation column starts */}
+      {/* infomation columns starts */}
       <div className="store-info-ctn">
         <FadeIn>
           <div className="info-half">
@@ -142,13 +128,14 @@ function Home() {
                 className="info-mid-home-img second"
               ></img>
               <div className="home-info-text second">
-                <div>Express shipping + Free Pick up in Toronto</div>
-                <div>Healthy plants GUARANTEED</div>
+                <div>Houseplants and Outdoor Plants</div>
+                <div>100% Natural Plant Products</div>
               </div>
             </div>
           </div>
         </FadeIn>
       </div>
+
       {/* sign up banner */}
       <div className="signup-banner-ctn">
         <div className="signup-contents">

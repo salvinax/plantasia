@@ -116,7 +116,7 @@ function Productpage({ addToCart }) {
     <div className="product-ctn-whole">
       <div className="product-img-half">
         <div className="product-img-half-ctn">
-          <img src="/plant1.jpg" alt="" />
+          <img src={"/products/" + item.imgLink} alt="" />
           <div className="product-quantity">
             <div className="cart-arrows" onClick={() => changeQuantity(-1)}>
               -
@@ -134,12 +134,7 @@ function Productpage({ addToCart }) {
           <div className="product-name-page">{item.productName}</div>
           <div className="small-border-page"></div>
           <div className="product-price-page">{price}$</div>
-          <div className="product-info-page">
-            The ZZ plant is Zamioculcas is genus of flowering plants in the
-            family Araceae, containing the single species Zamioculcas
-            zamiifolia. It is a tropical perennial plant, native to eastern
-            Africa, from southern Kenya to northeastern South Africa.
-          </div>
+          <div className="product-info-page">{item.productDescription}</div>
           {variantInfo.length > 1 && (
             <div ref={dropRef} className="drop-down-class-new">
               <div

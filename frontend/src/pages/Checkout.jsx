@@ -293,7 +293,7 @@ function Checkout({ closeCart, toogleCart, deleteCart, cart }) {
                       className="summary-item"
                     >
                       <div className="summary-item-img-ctn">
-                        <img src="/plant1.jpg" alt="" />
+                        <img src={"/products/" + item.img} alt="" />
                       </div>
                       <div className="summary-item-text-ctn">
                         <p className="sum-product-name">
