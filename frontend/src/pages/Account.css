@@ -9,7 +9,6 @@
 }
 
 .order-data-ctn {
-    /* height: 100vh; erease that  */
     display: flex;
     flex-direction: column;
     width: 90%;

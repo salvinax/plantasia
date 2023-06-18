@@ -21,11 +21,6 @@ function Shop({ addToCart }) {
   const sortNames = ["default", "priceASC", "priceDESC"];
 
   useEffect(() => {
-    console.log(title);
-    console.log(sortID);
-  });
-
-  useEffect(() => {
     if (dropBorder.current && drop) {
       dropBorder.current.classList.add("activations");
     } else {
