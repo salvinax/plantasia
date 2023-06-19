@@ -132,7 +132,7 @@
     text-align: center;
     position: relative;
     min-height: 50vh;
-    margin-top: 40px;
+    margin-top: 30px;
     padding-bottom: 100px;
 
     @media only screen and (max-width:800px) {
@@ -157,12 +157,6 @@
 
 
 
-/* .product-area-shop.ctn {
-    flex-basis: 80%;
-    background-color: orange;
-    height: 30vh;
-} */
-
 .product-area-shop-item {
     /* flex-grow: 1; */
     display: flex;
@@ -179,6 +173,7 @@
     object-fit: cover;
     border-radius: 20px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .product-area-shop-item button {

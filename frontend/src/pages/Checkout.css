@@ -243,7 +243,7 @@ body {
 
 
 .order-btn-ctn {
-    margin-top: 2rem;
+    margin-top: 1rem;
 
     display: flex;
     align-items: center;
@@ -259,4 +259,10 @@ body {
     height: 3rem;
     border-radius: 20px;
     font-size: 1rem;
+}
+
+.error-tag {
+    margin-top: 5px;
+    font-size: 15px;
+    text-align: center;
 }

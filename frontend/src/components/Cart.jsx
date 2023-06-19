@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./Navbar.css";
+import "./Cart.css";
 import { useNavigate } from "react-router-dom";
 
 function Cart({
@@ -49,10 +48,7 @@ function Cart({
             )}
             {cart.length > 0 &&
               cart.map((item) => (
-                <div
-                  key={item.productID + "-" + item.variant}
-                  className="cart-item"
-                >
+                <div key={item.id + "-" + item.variant} className="cart-item">
                   <div className="cart-item-img">
                     <img src={"/products/" + item.img} alt="" />
                   </div>

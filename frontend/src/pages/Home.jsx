@@ -151,7 +151,7 @@ function Home({ addToCart }) {
           </div>
         </FadeIn>
 
-        <FadeIn delay={"0.6s"}>
+        <FadeIn>
           <div className="info-half second">
             <div className="info-mid-home">
               <img

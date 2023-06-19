@@ -32,7 +32,13 @@ function Checkout({ closeCart, toogleCart, deleteCart, cart }) {
   const rooturl = serverData.link;
 
   useEffect(() => {
+    //make sure user can't access cart in checkout
     closeCart();
+
+    //if cart is empty then redirect user - can't order with empty cart
+    if (cart.length == 0) {
+      navigateTo("/shop");
+    }
   }, []);
 
   const cardElementOptions = {
@@ -330,7 +336,8 @@ function Checkout({ closeCart, toogleCart, deleteCart, cart }) {
                   <p> {amount}$</p>
                 </div>
               </div>
-              {submitError}
+              <div className="error-tag">{submitError}</div>
+
               <div className="order-btn-ctn">
                 {!paymentAccepted && (
                   <button onClick={orderSubmit} className="order-btn">

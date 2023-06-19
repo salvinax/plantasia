@@ -39,9 +39,11 @@ function App() {
   //check if item is alreay in cart if yes, then only increase quantity
   function addToCart(item, qtn) {
     let flag = 0;
+    console.log(item);
+    console.log(cart);
 
     const updateItems = cart.map((el) => {
-      if (el.productID === item.productID && el.variant === item.variant) {
+      if (el.id === item.id && el.variant === item.variant) {
         flag = 1;
         let newQtn = parseInt(el.quantity) + parseInt(qtn);
         return { ...el, quantity: newQtn };
@@ -72,10 +74,7 @@ function App() {
     setCart((currentCart) => {
       return currentCart.filter((current) => {
         return !(
-          (
-            current.productID == item.productID &&
-            current.variant == item.variant
-          )
+          (current.id == item.id && current.variant == item.variant)
           //use || instead of && opposite for filter
         );
       });
@@ -89,15 +88,14 @@ function App() {
       setCart((currentCart) => {
         return currentCart.filter((currentItem) => {
           return !(
-            currentItem.productID == item.productID &&
-            currentItem.variant == item.variant
+            currentItem.id == item.id && currentItem.variant == item.variant
           );
         });
       });
     } else {
       setCart((currentCart) => {
         return currentCart.map((el) => {
-          if (el.productID == item.productID && el.variant == item.variant) {
+          if (el.id == item.id && el.variant == item.variant) {
             let newQtn = el.quantity + number;
             return { ...el, quantity: newQtn };
           }

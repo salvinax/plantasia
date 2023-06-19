@@ -68,26 +68,6 @@ function Productpage({ addToCart }) {
       .catch((err) => console.log(err.message));
   }, []);
 
-  //when page is opened
-  // useEffect(() => {
-  //   const first = variantRefs.current[0];
-  //   if (first) {
-  //     first.classList.add("selected-button");
-  //     setSelectVariant(first.id);
-  //     setPrice(first.dataset.price);
-  //   }
-  // }, [variantRefs.current[0]]);
-
-  // function variantChange(event) {
-  //   variantRefs.current.forEach((btn) => {
-  //     btn.classList.remove("selected-button");
-  //   });
-
-  //   event.target.classList.add("selected-button");
-  //   setSelectVariant(event.target.id);
-  //   setPrice(event.target.dataset.price);
-  // }
-
   function changeQuantity(number) {
     setItemQtn((currentQtn) => {
       currentQtn = currentQtn + number;
@@ -156,6 +136,7 @@ function Productpage({ addToCart }) {
                           onClick={() => {
                             setDrop(!drop);
                             setSelectVariant(variant.name);
+                            setItemQtn(1);
                           }}
                           className="drop-down-item-new"
                         >
@@ -175,55 +156,6 @@ function Productpage({ addToCart }) {
           </button>
         </div>
       </div>
-      {/* <div className="info-single-product">
-        <div className="name">{item.productName}</div>
-        <div className="price">{price}$</div>
-        <div className="single-add-cart">
-          <div className="single-qtn">
-            <div className="cart-arrows" onClick={() => changeQuantity(-1)}>
-              &lt;
-            </div>
-            <p>{itemQtn}</p>
-            <div className="cart-arrows" onClick={() => changeQuantity(1)}>
-              &gt;
-            </div>
-          </div>
-          <div
-            className="btn-single-add-cart"
-            onClick={() => addToCartHelper()}
-          >
-            ADD TO CART
-          </div>
-        </div>
-        {variantInfo && (
-          <div className="variant-product">
-            <div className="current-variant">
-              <p>
-                <span>{item.variantType} :</span> {selectVariant}
-              </p>
-            </div>
-            <div className="variant-choices">
-              {variantInfo.map((variant, index) => {
-                return (
-                  <div
-                    className="variant-single-choice"
-                    key={item.productID + variant.name}
-                    id={variant.name}
-                    onClick={variantChange}
-                    data-price={variant.price}
-                    ref={(ref) => (variantRefs.current[index] = ref)}
-                  >
-                    {variant.name.charAt(0)}
-                  </div>
-                );
-              })}
-            </div> */}
-      {/* </div>
-        )}
-        <div className="desc-product">
-          <span>Description:</span> WOW GREAT PLANTS!!
-        </div>
-      </div> */}
     </div>
   );
 }

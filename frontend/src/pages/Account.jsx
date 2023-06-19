@@ -12,58 +12,60 @@ function Account() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const name = localStorage.getItem("username");
 
-    // if (token) {
-    fetch(rooturl + "/api/pastOrders", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        if (res.status == 200) {
-          res.json().then((data) => {
-            if (data.length == 0) {
-              console.log("No Past Orders.");
-              setData(null);
-            } else {
-              console.log(data);
-              setData(data);
-            }
-          });
-        } else {
-          res.json().then((data) => {
-            //remove token
-            console.log(data);
-            // localStorage.removeItem("token");
-            // // //ask user to login again
-            // navigateTo("/login");
-          });
-        }
+    if (token && name) {
+      fetch(rooturl + "/api/pastOrders", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .catch((err) => {
-        console.log(err.message);
-      });
+        .then((res) => {
+          if (res.status == 200) {
+            res.json().then((data) => {
+              if (data.length == 0) {
+                // console.log("No Past Orders.");
+                setData(null);
+              } else {
+                setData(data);
+              }
+            });
+            setUser(name.toLocaleUpperCase());
+          } else {
+            res.json().then((data) => {
+              //remove token
+              localStorage.removeItem("token");
+              localStorage.removeItem("user");
+              //ask user to login again
+              navigateTo("/login");
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } else {
+      //remove token
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      //ask user to login again
+      navigateTo("/login");
+    }
   }, []);
 
   function LoggingOut() {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigateTo("/");
   }
 
-  function handleClicks() {
-    if (isClicked) {
-      setisClicked(false);
-    } else {
-      setisClicked(true);
-    }
-  }
   return (
     <>
       <div className="main-ctn-acc">
         <div className="space-btw"></div>
         <div className="order-data-ctn">
           <div className="user-header">
-            <p>USER'S PAST ORDERS</p>
+            <p>{user}'S PAST ORDERS</p>
             <p onClick={LoggingOut}>log out</p>
           </div>
           {!data && (
@@ -84,7 +86,6 @@ function Account() {
             })}
         </div>
       </div>
-      {/* <button onClick={LoggingOut}>Log out</button> */}
     </>
   );
 }

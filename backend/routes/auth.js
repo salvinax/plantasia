@@ -20,7 +20,7 @@ router.post('/register', async (req, res, next) => {
                     //assign jwt token and print in console
                     const userinfo = search[0]
                     const jwt = jwtFunction(userinfo);
-                    const tokenInfo = { username: userinfo.username, token: jwt.token, expiresIn: jwt.expires };
+                    const tokenInfo = { username: userinfo.firstName, token: jwt.token, expiresIn: jwt.expires };
                     res.status(200).json(tokenInfo);
                 } else {
                     res.status(400).json(msg)
@@ -47,7 +47,7 @@ router.post('/login', (req, res, next) => {
             try {
                 if (user) {
                     const jwt = jwtFunction(user);
-                    const tokenInfo = { username: user.username, token: jwt.token, expiresIn: jwt.expires, msg };
+                    const tokenInfo = { username: user.firstName, token: jwt.token, expiresIn: jwt.expires, msg };
                     res.status(200).json(tokenInfo);
                 } else {
                     res.status(400).json(msg);
