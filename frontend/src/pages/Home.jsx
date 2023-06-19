@@ -1,12 +1,37 @@
-import React from "react";
-import Carousel from "../components/Carousel";
-import Bestseller from "../components/Bestseller";
+import React, { useEffect } from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import FadeIn from "../components/fadeIn";
+import serverData from "../server.json";
+import { useState } from "react";
 
 function Home({ addToCart }) {
   const navigateTo = useNavigate();
+  const rooturl = serverData.link;
+  const [item, setItem] = useState([]);
+
+  useEffect(() => {
+    fetch(rooturl + "/api/product/8")
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res.json().then((json) => Promise.reject(json));
+      })
+      .then((info) => {
+        setItem(info[0]);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
+
+  function addToCartHelper() {
+    const newItem = {
+      id: item.productID,
+      name: item.productName,
+      img: item.imgLink,
+      variant: item.variantName,
+      price: item.variantPrice,
+    };
+    addToCart(newItem, 1);
+  }
 
   return (
     <>
@@ -80,10 +105,10 @@ function Home({ addToCart }) {
               <span className="breakword">TO YOURS</span>
             </div>
             <div className="best-text">
-              This is a button fern. Water once every one to two weeks and place
-              it in indirect sunglight. It's suitable for beginners and pet
-              friendly!
-              <span className="breakword space">Starting from 25$.</span>
+              {item.productDescription}
+              <span className="breakword space">
+                Starting from {Math.floor(item.variantPrice)}$.
+              </span>
             </div>
 
             <div
@@ -97,8 +122,14 @@ function Home({ addToCart }) {
           </div>
         </div>
         <div className="best-half-two">
-          <img src="/fern-plant.jpg" alt="" />
-          <button className="best-half-two-btn">add to cart</button>
+          <img
+            onClick={() => navigateTo("/shop/" + item.productID)}
+            src={item.imgLink}
+            alt=""
+          />
+          <button onClick={addToCartHelper} className="best-half-two-btn">
+            add to cart
+          </button>
         </div>
       </div>
 
