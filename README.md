@@ -45,7 +45,7 @@ https://github.com/salvinax/plantasia/assets/113158430/20036cd9-0c6f-4c20-992e-e
     Express
    </li>
    <li>
-    MySQL (Postgres)
+    PostgreSQL
   </li>
    <li>
     Stripe
