@@ -1,6 +1,6 @@
 # Plantasia 🌱
 
-My mother has always had a green thumb; we had plants on every window still and our living room was more plant than furniture. It's no wonder I love plants and gardening. Plantasia is a ecommerce website that combines my love for plants and coding into one.
+My mother has always had a green thumb; we had plants on every windowsill, and our living room was pratically a jungle, more greenery than furniture. It's no surprise I developed a deep love for plants and gardening. Plantasia is a ecommerce website that combines my love for plants and coding into one.
 
 Plantasia is a fully responsive ecommerce website with a REST API where users can: 
 
